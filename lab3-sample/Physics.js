@@ -1,11 +1,11 @@
 import Matter, { Sleeping } from "matter-js";
-//import Constants from "./Constants";
+import Constants from "./Constants"
 
 const Physics = (entities, { touches, dispatch, events, time }) => {
   let engine = entities.physics.engine;
   let world = engine.world;
 
-engine.world.gravity.y = 0;
+engine.world.gravity.y = 0.5;
 
 //////////////// Define connect1 as constraint between Two circles /////////////////////////////////////////////////////////////////
 var connect1 = {
@@ -14,7 +14,7 @@ var connect1 = {
       bodyB: entities.Circle2.body,
       length: 150,        //Distance between two bodies in pixel -- try with some Negative length.
       
-      stiffness: 1,     // The rate at which it retruns to its resting. 
+      stiffness: 0.8,     // The rate at which it retruns to its resting. 
                           //Default is 1 . A value of 1 is very stiff. 0.2 acts like a soft spring. Try 0.5,0.9,2
       
       damping: 0.1,   //the amount of resistance applied to each body based on their velocities to limit the amount of oscillation. 
@@ -72,8 +72,3 @@ touches
 };
 
 export default Physics;
-
-
-
-
-

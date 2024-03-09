@@ -13,6 +13,44 @@ export default (gameWorld) => {
   //engine.gravity.y = 0.0;
   //engine.gravity.x = 0;
 
+  let { width, height } = Dimensions.get('window');
+  
+  console.log('Width: ', width);
+  let circleRadius = 10;
+  let circleDiameter = circleRadius * 2;
+  let gap = 5;
+
+  let totalCircles = 10;
+  let totalWidth = totalCircles * circleDiameter + (totalCircles - 1) * gap;
+  let startingX = (width - totalWidth) / 2;
+  
+  console.log('startingX', startingX);
+  console.log('totalWidth', totalWidth);
+  let circles = {};
+  
+  // Create the first and last circles
+  circles['Circle0'] = Circle2(world, 'red', { x: startingX, y: height - circleRadius }, circleRadius, {
+    label: 'Circle2',
+    isStatic: true,
+  });
+  console.log(`Width of circle 0: ${startingX}\n\n`);
+  circles['Circle09'] = Circle2(world, 'red', { x: startingX + 9 * (circleDiameter + gap), y: height - circleRadius }, circleRadius, {
+    label: 'Circle2',
+    isStatic: true,
+  });
+  console.log(`Width of circle 9: ${startingX + 9 * (circleDiameter + gap)}\n\n`);
+  console.log("Height of static circles: ", height);
+
+  // Create the other circles
+  for (let i = 1; i < totalCircles -1; i++) {
+    circles[`Circle${i}`] = Circle2(world, 'green', { x: startingX + i * (circleDiameter + gap), y: height - circleRadius }, circleRadius, {
+      label: 'Circle2',
+      isStatic: false,
+    });
+    console.log(`Height of circle ${i} in the loop: ${height}`);
+    console.log(`Horizontal position of circle ${i}: ${startingX + i * (circleDiameter + gap)}\n\n`);
+  }
+
   return {
     physics: { engine, world },
 
@@ -21,16 +59,11 @@ export default (gameWorld) => {
     BottomBoundary: BoundaryBottom(
       world,
       'yellow',
-      { x: 20, y: 750 },
+      { x: 20, y: height },
       { height: 50, width: 900 }
     ),
 
-    Circle1: Circle1(world, 'red', { x: 150, y: 150 }, 50),
-
-    Circle2: Circle2(world, 'red', { x: 150, y: 250 }, 10, {
-      label: 'Circle2',
-    
- 
-}),
+    //Circle1: Circle1(world, 'red', { x: 150, y: 150 }, 50),
+    ...circles,
   };
 };
