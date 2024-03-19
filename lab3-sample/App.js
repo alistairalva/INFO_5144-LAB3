@@ -18,9 +18,8 @@ export default function App() {
     <View style={styles.container}>
       
       <GameEngine
-        
-        systems={[Physics]}
         entities={entities()}
+        systems={[Physics]}
         style={styles.gameContainer}
       >
         <StatusBar style="auto" hidden={true} />
