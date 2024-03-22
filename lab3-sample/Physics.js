@@ -6,27 +6,13 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
   let engine = entities.physics.engine;
   let world = engine.world;
 
-  engine.world.gravity.y = 0.1;
-
-  // Check if entities.Bridge exists and is properly initialized
-  if (!entities.Bridge || !entities.Bridge.Circles) {
-    console.log('No bridge or circles are defined');
-    return entities; // Return entities without further processing
-  }
+  engine.world.gravity.y = 0.5;
 
   // Filter out the circles from the entities
-  let circles = entities.Bridge.Circles;
+  let circles = entities.circleEntities;
+  console.log('Num of Circles: ', circles.length);
 
-    console.log('Num of Circles: ', circles.length);
   if (circles.length > 1) {
-    //Sort the circles by their x position to ensure they're in the correct order
-    //circles.sort((a, b) => a.body.position.x - b.body.position.x);
-  
-    // //Make the first and last circles static
-    // Matter.Body.setStatic(circles[0].body, true);
-    // Matter.Body.setStatic(circles[circles.length -1].body, true);
-  
-    //Create constraints between each pair of adjacent circles
     for (let i = 1; i < circles.length -1; i++) {
       let connect1 = {
         bodyA: circles[i-1].body,
