@@ -26,7 +26,7 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
     .forEach((t) => {
       Matter.Body.setVelocity(entities.Square.body, {
         x: 0, //move along x-axis with given velocity
-        y: 15, //move along y-axis with given velocity
+        y: 10, //move along y-axis with given velocity
       });
 
     });

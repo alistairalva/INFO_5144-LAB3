@@ -31,6 +31,8 @@ export default (world, color, pos, radius, options = {}) => {
     { 
       label: "Circle2",
       isStatic: options.isStatic || false,
+      friction: options.friction || 3,
+      restitution: options.restitution || 0,
   
     });
 

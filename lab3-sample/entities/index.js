@@ -48,7 +48,7 @@ export default (gameWorld) => {
         bodyA: circles[`Circle${previousKey}`].body,
         bodyB: circles[key].body,
         length: 30,
-        stiffness: 0.5,
+        stiffness: 0.2,
         damping: 0.1,
       };
       console.log('previousKey: ', previousKey);

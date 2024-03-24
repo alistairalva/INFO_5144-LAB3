@@ -28,7 +28,7 @@ export default (world, color, pos, size) => {
     pos.y,
     size.width,
     size.height,
-    // { label: 'Box', frictionAir: 0, friction: 0 , isStatic: true}
+    { label: 'Box', frictionAir: 0, friction: 3, isStatic: false}
     
   );
   Matter.World.add(world, theBox);
