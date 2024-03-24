@@ -1,48 +1,36 @@
-import { Dimensions, View } from "react-native";
-import Matter from "matter-js";
+import {View} from 'react-native';
+import Matter from 'matter-js';
 
 const Box = (props) => {
-  const width = props.size.width;
-  const height = props.size.height;
+  const width = props.body.bounds.max.x - props.body.bounds.min.x;
+  const height = props.body.bounds.max.y - props.body.bounds.min.y;
 
   const xPos = props.body.position.x - width / 2;
   const yPos = props.body.position.y - height / 2;
-
-  let angle = props.body.angle + "deg";
+  
   return (
     <View
       style={{
-        width: props.size.width,
-        height: props.size.height,
+        width: width,
+        height: height,
         left: xPos,
         top: yPos,
         backgroundColor: props.color,
-        //transform: [{ rotate: angle }],
-        position: "absolute",
+        position: 'absolute',
       }}
     ></View>
   );
 };
 
-export default (world, color, pos, size, extraOptions) => {
+export default (world, color, pos, size) => {
   const theBox = Matter.Bodies.rectangle(
     pos.x,
     pos.y,
     size.width,
     size.height,
-    {
-      //use options that you need
-      label: extraOptions.label,
-      frictionAir: 0,
-      angularVelocity: 0,
-      restitution: 1,
-      mass: 1,
-      friction: 0,
-      frictionStatic: 0,
-      isStatic: extraOptions.isStatic,
-      velocity: { x: 0, y: 1 },
-    }
+    // { label: 'Box', frictionAir: 0, friction: 0 , isStatic: true}
+    
   );
   Matter.World.add(world, theBox);
-  return { body: theBox, color, pos, size, extraOptions, renderer: <Box /> };
+  return { body: theBox, color, pos, renderer: <Box /> };
 };

@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import { GameEngine } from "react-native-game-engine";
-import entities from "./entities";
+import entities from "./entities/";
 import React, { useEffect, useState } from "react";
 import Physics from "./Physics";
 
