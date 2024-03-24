@@ -18,9 +18,10 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
   //   return entities;
   // }
 
-  // First, add all the circles to the world
+
   for (let key in circles) {
     let previousKey = Number(key) - 1;
+    console.log('Previous Key: ', previousKey);
     if (previousKey >= 0) {
       let connect1 = {
         bodyA: circles[previousKey].body,
@@ -41,8 +42,8 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
     .filter((t) => t.type === 'press')
     .forEach((t) => {
       Matter.Body.setPosition(entities.Square.body, {
-        x: 180, //move along x-axis with given velocity
-        y: 50, //move along y-axis with given velocity
+        x: 180, 
+        y: 50,
       });
 
   });  
