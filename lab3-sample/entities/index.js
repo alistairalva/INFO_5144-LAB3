@@ -11,14 +11,16 @@ export default (gameWorld) => {
   let engine = Matter.Engine.create();
   let world = engine.world;
 
+  //engine.gravity = 0.5;
+
   let { width, height } = Dimensions.get('window');
 
   console.log('Width: ', width);
-  let circleRadius = 15;
+  let circleRadius = 10;
   let circleDiameter = circleRadius * 2;
-  let gap = 3;
+  let gap = 2;
 
-  let totalCircles = 10;
+  let totalCircles = 16;
   let totalWidth = totalCircles * circleDiameter + ((totalCircles -1) * gap);
   let startingX = (width - totalWidth) / 2;
 
@@ -47,9 +49,9 @@ export default (gameWorld) => {
       let connect1 = {
         bodyA: circles[`Circle${previousKey}`].body,
         bodyB: circles[key].body,
-        length: 30,
-        stiffness: 0.2,
-        damping: 0.1,
+        length: 20,
+        stiffness: 0.9,
+        damping: 0,
       };
       console.log('previousKey: ', previousKey);
       var constraint1 = Matter.Constraint.create(connect1);

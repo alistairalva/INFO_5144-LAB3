@@ -7,7 +7,7 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
   let engine = entities.physics.engine;
   let world = engine.world;
 
-  engine.world.gravity.y = 0.0;
+  engine.world.gravity.y = 0.5;
 
   // Filter out the circles from the entities
   
@@ -26,7 +26,7 @@ const Physics = (entities, { touches, dispatch, events, time }) => {
     .forEach((t) => {
       Matter.Body.setVelocity(entities.Square.body, {
         x: 0, //move along x-axis with given velocity
-        y: 10, //move along y-axis with given velocity
+        y: 5, //move along y-axis with given velocity
       });
 
     });
